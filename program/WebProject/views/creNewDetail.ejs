@@ -1,0 +1,132 @@
+<div class="row">
+        <div class="col-sm-4" style="padding-top: 10px">
+
+          DURATION : 
+        </div>
+
+
+
+        <div class="col-sm-2" style="padding-top: 10px">
+          START
+        </div>
+        <div class="col-sm-6">
+         <div class="input-group clockpicker" data-placement="right" data-align="top" data-autoclose="true">
+          <input type="text" class="form-control" style="background-color:#e6e6e6" name='start_time' id='start_time'>
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-time"></span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <!-- -->
+    <div class="row" style="padding-top: 1px">
+      <div class="col-sm-4">    </div>
+
+      <div class="col-sm-2" style="padding-top: 10px">
+        FINISH
+      </div>
+      <div class="col-sm-6">
+        <div class="input-group clockpicker" data-placement="right" data-align="top" data-autoclose="true">
+          <input type="text" class="form-control" style="background-color:#e6e6e6" name='finish_time' id='finish_time'>
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-time"></span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- end duration -->
+
+
+
+    <!-- temperature control-->
+
+    <br><div class="row">
+    <div class="col-sm-4">
+     TEMPERATURE CONTROL :
+   </div>
+   <div class="col-sm-8">
+
+     <div class="input-group">
+
+       <input style="background-color: #e6e6e6" type="text" value="" class="form-control" name='control_temp' id='control_temp'>
+       <span style="background-color:
+
+       #f2f2f2" class="input-group-addon"><i class="glyphicon glyphicon-fire"></i></span>
+
+     </div> 
+   </div>
+ </div>
+
+
+ <!-- temperature control description-->
+
+ <div class="row">
+   <div class="col-sm-4"></div>
+
+   <div class="col-sm-8" >
+
+    <font color="#e0e0eb">Example. 20.00 Mean 18.00-22.00 (&#176 C)</font>
+
+  </div>
+</div>
+
+
+<!--end temperature -->
+
+<br><div class="row">
+<div class="col-sm-4">
+ RELATIVE HUMIDITY CONTROL :
+</div>
+<div class="col-sm-8">
+
+ <div class="input-group">
+
+   <input style="background-color: #e6e6e6" type="text" value="" class="form-control" name='control_humid' id='control_humid'>
+   <span style="background-color:
+
+   #f2f2f2" class="input-group-addon">
+   <i class="glyphicon glyphicon-leaf"></i></span>    
+
+   
+ </div> 
+</div>
+</div>
+
+
+
+
+
+<!-- humidity control description-->
+
+<div class="row">
+ <div class="col-sm-4"></div>
+
+ <div class="col-sm-8" >
+
+  <font color="#e0e0eb">Example. 60 (%) ratio of vapor to the equilibrium per vapor in the air. </font>
+
+</div>
+</div>
+
+</div>
+
+<hr>
+
+<script>
+
+
+  $('.clockpicker').clockpicker({
+
+  });
+
+
+  $('.datepicker').datepicker({
+
+    weekStart:1,
+
+    color:'orange'
+
+  });
+
+</script>

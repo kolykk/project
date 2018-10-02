@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en" ng-app="ui.bootstrap.demo">
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/png" href="assets2/assets/paper_img/favicon.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+  <title>Sensor System</title>
+
+  <link href="assets2/bootstrap3/css/bootstrap.css" rel="stylesheet" />
+  <link href="assets2/assets/css/ct-paper.css" rel="stylesheet"/>
+  <link href="assets2/assets/css/demo.css" rel="stylesheet" />
+  <link href="assets2/assets/css/bootstrap-clockpicker.min.css" rel="stylesheet" />
+  <!-- add search table -->
+  <link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css">
+  <!--     Fonts and icons     -->
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+  <!-- <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">-->
+
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.js"></script>
+  <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.3.3.js"></script>
+  <script src="/javascripts/angular_repeat.js"></script>
+
+
+  <style>
+    div.absolute {
+      position: absolute;
+      top: 80px;
+      right: 0;
+      width: 130px;
+      height: 100px;
+
+    }
+  </style>
+
+</head>
+<body>
+  <nav class="navbar navbar-ct-danger" role="navigation-demo" id="demo-navbar">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <h3><strong>SENSOR SYSTEM</strong></h3>
+
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="navigation-example-2">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="/" class="btn btn-success btn-simple">HOME</a>
+          </li>
+          <li>
+            <a href="/login" class="btn btn-success ">LOGOUT</a>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-->
+  </nav>
+
+  <div class="main">
+    <div class="section section-nude">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="fixed-section">
+              <ul>
+               <a href="/register">
+                 <div class="col-sm-3 block-3-box wow fadeInDown animated" style="visibility: visible; animation-name: fadeInDown;">
+                  <br><br> <div class="block-3-box-icon">
+                  <button class="btn btn-primary  btn-lg"><i class="fa fa-pencil" ></i>Registration</button>
+                </a>
+                <br><br> <a href="/manageinfo ">
+                <button class="btn btn-primary  btn-lg"><i class="fa fa-list-alt" ></i>Informations</button></a>
+                <br><br><a href="/transactions">
+                <button class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-transfer" ></i>Transactions</button></a>
+
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="tim-container" style="min-height: 700px;">
+              <div class="right_col" role="main">
+                <div class="clearfix"></div>
+                <div class="row">
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel" ng-controller="ModalDemoCtrl">
+                      <div class="x_title">
+
+                        <h3><i class="fa fa-list-alt" aria-hidden="true"></i> &nbsp INFORMATIONS</h3>
+                        <legend></legend>
+
+
+                        <div class="clearfix"></div>
+                      </div>
+                      <div class="x_content">
+                        <p class="text-muted font-13 m-b-30">
+                          All Information Sensor already to registration.
+                        </p>
+
+                        <div class="absolute"><a href="/managedetail" class="btn btn-warning "><i class="fa fa-info-circle" aria-hidden="true"></i>DETAIL</a></div>
+
+
+                        <div class="box-body">
+                          <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                              <tr>
+                                <th style="text-align:center;vertical-align:middle;">SENSOR ID</th>
+                                <th>NAME</th>
+                                <th>ESTABLISHED</th>
+                                <th>LOCATION</th>
+                                <th>DESCRIPTIONS</th>
+                                <!--   <th>DETAILS</th> -->
+                                <th>ACTIONS</th>
+                              </td>
+                            </thead>
+                            <tbody ng-repeat="sensor in items.data" style= "text-align:center;vertical-align:middle;">
+                              <tr>
+                                <td>{{ sensor.s_id }}</td>
+                                <td>{{ sensor.s_name }}</td>
+                                <td>{{ sensor.s_established }}</td>
+                                <td>{{ sensor.s_location }}</td>
+                                <td>{{ sensor.s_descriptions }}</td>
+                            <!--     <td>
+                                    <button style="text-align:center;vertical-align:middle;" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#exampleModal1" data-whatever ng-click="open_details('lg' , sensor.s_id )">
+                                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                    </button>
+                                  </td> -->
+                                  <td>
+                                    <button class="btn btn-success btn-sm btn-simple" ng-click="add_detail('lg' , sensor.s_id )">
+                                      <i class="fa fa-plus-square" aria-hidden="true"></i>
+                                    </button>
+
+                                    <button class="btn btn-default btn-sm btn-simple" ng-click="open('lg' , sensor.s_id )">
+                                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                                    </button>
+
+                                    <button style="text-align:center;vertical-align:middle;" class="btn btn-info btn-sm btn-simple" data-toggle="modal" data-target="#exampleModal1" ng-click="open_delete('sm',sensor.s_id)">
+                                      <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </button>
+
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                          <!-- Content Header (Page header) -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="tim-row">
+        <!-- modal -->
+        <div class="container">
+
+
+          <!-- Modal EDIT-->
+          <script type="text/ng-template" id="myModalContent.html">
+            <div class="modal-header">
+              <h3 class="modal-title">EDIT INFORMATION</h3>
+            </div>
+            <div class="modal-body">
+              <form class="form-horizontal" role="form">
+                <fieldset>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Sensor_id</label>
+                    <div class="col-sm-10">
+                      <input id="Sensor_id" type="text" name="s_id" placeholder="Sensor Id" class="form-control" ng-model="items.s_id" disabled>
+                    </div>
+                  </div>
+                  <!-- Text input-->
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Name</label>
+                    <div class="col-sm-10">
+                      <input id="name" type="text" name="s_name" placeholder="Sensor Name" class="form-control" ng-model="items.s_name">
+                    </div>
+                  </div>
+                  <!-- Text input-->
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Established</label>
+                    <div class="col-sm-10">
+                      <input id="established" type="text" name="s_established" placeholder="Established" class="form-control" ng-model="items.s_established" >
+                    </div>
+                  </div>
+                  
+
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Locations</label>
+                    <div class="col-sm-10">
+                      <input id="locations" type="text" name="s_location" placeholder="Location" class="form-control" ng-model="items.s_location" >
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Descriptions</label>
+                    <div class="col-sm-10">
+                      <input id="descriptions" type="text" name="s_descriptions" placeholder="Descriptions" class="form-control" ng-model="items.s_descriptions">
+                    </div>
+                  </div>
+                  <br><br><br>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <div class="pull-right" style="padding-right: inherit;">
+                        <button type="button" class="btn btn-primary" ng-click="ok()" >UPDATE</button>
+                        <button type="button" class="btn btn-warning" ng-click="cancel()" >Cancel</button>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+          </script>
+          <!-- END Modal -->
+          <!-- Modal ADD-->
+          <script type="text/ng-template" id="myModalContent_adddetail.html">
+            <div class="modal-header">
+              <h3 class="modal-title">ADD DETAIL</h3>
+            </div>
+            <div class="modal-body">
+              <form class="form-horizontal" role="form">
+
+                <fieldset>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Sensor_id</label>
+                    <div class="col-sm-10">
+                      <input id="Sensor_id" type="text" name="s_id" placeholder="Sensor Id" class="form-control" ng-model="items.s_id" disabled>
+                    </div>
+                  </div>
+                  <!-- Text input-->
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Name</label>
+                    <div class="col-sm-10">
+                      <input id="name" type="text" ng-model="items.s_name" disabled name="s_name" placeholder="Sensor Name" class="form-control" >
+                    </div>
+                  </div>
+                  <!-- Text input-->
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Control Humid</label>
+                    <div class="col-sm-10">
+                      <input id="control_humid" type="text" name="control_humid" placeholder="Example. 22" class="form-control" >
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Control Temp</label>
+                    <div class="col-sm-10">
+                      <input id="control_temp" type="text" name="control_temp" placeholder="Example. 30" class="form-control"  >
+                    </div>
+                  </div>
+                  
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">Start Time</label>
+                    <div class="col-sm-10">
+                     <div class="input-group clockpicker" data-placement="right" data-align="top" data-autoclose="true">
+                      <input id="start_time" type="text" name="start_time" placeholder="Example. 9:00" class="form-control" >
+                      <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-time"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="textinput">Finish Time</label>
+                  <div class="col-sm-10">
+                   <div class="input-group clockpicker" data-placement="right" data-align="top" data-autoclose="true">
+                    <input id="finish_time" type="text" name="finish_time" placeholder="Example. 11:00" class="form-control">
+                    <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-time"></span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+
+
+              <br><br><br>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <div class="pull-right" style="padding-right: inherit;">
+                    <button type="button" class="btn btn-primary" onclick="addDetail()">INSERT</button>
+                    <button type="button" class="btn btn-warning" ng-click="cancel()" >CANCEL</button>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </script>
+      <!-- END Modal -->
+      <!-- Modal DETAILS-->
+             <!--  <script type="text/ng-template" id="myModalContent_detail.html">
+              <div class="modal-header">
+                        <h3 class="modal-title">DETAILS</h3>
+              </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal" method="POST" action="update" role="form">
+                              <fieldset> -->
+                               <!--  <!-- Text input-->
+                               <!--  <div class="form-group">
+                                    <label class="col-sm-1 control-label" for="textinput">sensor name</label>
+                                    <div class="col-sm-10">
+                                        <input id="name" type="text" name="s_name" placeholder="Address Line 2" class="form-control" ng-model="items.s_name" disabled>
+                                    </div>
+                                  </div>  -->
+                                  <!-- Text input-->
+                             <!--    <div class="form-group">
+                                    <label class="col-sm-1 control-label" for="textinput">start time</label>
+                                    <div class="col-sm-4">
+                                        <input id="start_time" type="text" name="start_time" placeholder="State" class="form-control" ng-model="items.start_time" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label" for="textinput">finish time</label>
+                                    <div class="col-sm-4">
+                                        <input id="finish_time" type="text" name="finish_time" placeholder="State" class="form-control" ng-model="items.finish_time" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label" for="textinput">control temp</label>
+                                    <div class="col-sm-4">
+                                        <input id="control_temp" type="text" name="control_temp" placeholder="State" class="form-control" ng-model="items.control_temp">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label" for="textinput">control humidity</label>
+                                    <div class="col-sm-4">
+                                        <input id="control_humid" type="text" name="control_humid" placeholder="State" class="form-control" ng-model="items.control_humid">
+                                    </div>
+                                </div>
+                                <br><br><br>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <div class="pull-right" style="padding-right: inherit;">
+                                                <button type="button" class="btn btn-primary" ng-click="ok_details()" >UPDATE</button>
+                                                <button type="button" class="btn btn-danger" ng-click="cancel()" >Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            </form>
+                        </div>
+                      </script> -->
+                      <!-- END Modal -->
+
+
+                      <!-- Modal -->
+                      <div class="modal fade" role="dialog">
+                        <script type="text/ng-template" id="myModal.html">
+
+                          <div class="modal-dialog modal-sm">
+
+                            <div class="modal-header">
+
+                              <h4 class="modal-title">Delete Detail</h4>
+                            </div>
+                            <div class="modal-body">
+                              <center><font>Are you sure ?</font></center>
+                            </div> 
+                            <div class="modal-footer"><br>
+                             <form class="form-horizontal" method="POST" action="update" role="form">
+                              <fieldset>
+                                <div class="form-group">
+                                  <div class="col-sm-10">
+
+                                    <button type="button" class="btn btn-primary" ng-click="delete()" >DELETE</button>
+                                    <button type="button" class="btn btn-warning" ng-click="cancel()" >CANCEL</button>
+
+
+                                  </div>
+                                </div>
+                              </fieldset>
+                            </form>
+                          </div>
+
+                        </div>
+
+                      </script>
+                      <!-- END Modal -->
+
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <!-- /.box-header -->
+
+
+            <!-- /.box-body -->
+
+            <!-- /.box -->
+
+
+            <!-- end row -->
+
+            <!-- end container -->
+
+
+
+            <footer class="footer-demo section-dark">
+              <div class="container">
+                <nav class="pull-left">
+
+                </nav>
+                <div class="copyright pull-right">
+                  &copy; 2017, made with <i class="fa fa-heart heart"></i>
+                </div>
+              </div>
+            </footer>
+          </body>
+
+
+          <script src='https://code.jquery.com/jquery-1.12.4.js'></script>
+          <script src='https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js'></script>
+
+
+
+          <script src="assets2/assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+          <script src="assets2/assets/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
+
+          <script src="assets2/bootstrap3/js/bootstrap.js" type="text/javascript"></script>
+
+          <!--  Plugins -->
+          <script src="assets2/assets/js/ct-paper-checkbox.js"></script>
+          <script src="assets2/assets/js/ct-paper-radio.js"></script>
+          <script src="assets2/assets/js/bootstrap-select.js"></script>
+          <script src="assets2/assets/js/bootstrap-datepicker.js"></script>
+
+          <script src="assets2/assets/js/ct-paper.js"></script>
+
+          <script src="assets2/assets/js/bootstrap-clockpicker.min.js"></script>
+
+          <!--  add seach table -->
+          <!-- jQuery 2.2.3 -->
+
+          <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+          <!-- Bootstrap 3.3.6 -->
+          <script src="bootstrap/js/bootstrap.min.js"></script>
+          <!-- DataTables -->
+          <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+          <script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
+          <!-- SlimScroll -->
+          <script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
+          <!-- FastClick -->
+
+          <script>
+            $(function () {
+              $("#example1").DataTable();
+              $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false
+              });
+            });
+          </script>
+
+          <script>
+
+            function addDetail(){
+              uuid = $('#Sensor_id').val();
+              s_name = $('#name').val();
+              temp = $('#control_temp').val();
+              humid = $('#control_humid').val();
+              start = $('#start_time').val();
+              finish = $('#finish_time').val();
+
+              $.post( "/manageinfo/insertdetail", { s_id: uuid ,s_name: s_name, control_temp: temp, control_humid: humid, start_time:start, finish_time: finish } );
+
+              window.location.replace("/managedetail");
+
+            }
+          </script>
+
+
+
+<!--
+
+ $('#exampleModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var recipient = button.data('whatever') // Extract info from data-* attributes
+  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  var modal = $(this)
+
+  var j = recipient;
+})
+-->
+
+<!--
+<script>
+  $('#show').click(function(){
+    $.ajax({
+      url : 'assets2/ajax/selectDetail.php',
+      type : 'get',
+      success : function(msg){
+       $('#result').html(msg)
+      }
+    })
+  })
+</script>
+-->
+<script>
+
+
+  $('.clockpicker').clockpicker({
+
+  });
+
+
+  $('.datepicker').datepicker({
+
+    weekStart:1,
+
+    color:'orange'
+
+  });
+
+</script>
+
+</html>
